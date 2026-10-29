@@ -1,0 +1,21 @@
+html {
+  background: #aebdc7;
+}
+
+body {
+  color: var(--ink-strong);
+  background:
+    radial-gradient(circle at 10% 0%, rgba(255,255,255,.72), transparent 34rem),
+    linear-gradient(145deg, #dce5ea, #9dabb4);
+}
+
+button,
+input {
+  min-height: var(--touch);
+}
+
+button:focus-visible,
+input:focus-visible {
+  outline: 3px solid var(--focus);
+  outline-offset: 3px;
+}

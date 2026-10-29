@@ -8,7 +8,7 @@ describe('App', () => {
 
     expect(screen.getByRole('heading', { name: 'Weatherworks' })).toBeInTheDocument()
     expect(
-      screen.getByRole('region', { name: 'Atmospheric instrument console' }),
+      screen.getByRole('main', { name: 'Atmospheric instrument console' }),
     ).toBeInTheDocument()
   })
 })

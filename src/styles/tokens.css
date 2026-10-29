@@ -1,0 +1,31 @@
+:root {
+  --light-key: rgba(255, 255, 255, 0.92);
+  --light-fill: rgba(209, 225, 235, 0.44);
+  --ink-strong: #15202a;
+  --ink-muted: #53606a;
+  --metal-base: #9caab4;
+  --metal-dark: #4d5a63;
+  --metal-light: #e9f0f3;
+  --plastic: #26343d;
+  --plastic-dark: #111b21;
+  --glass: #123a44;
+  --glass-ink: #d9fbf1;
+  --signal: #71f0bd;
+  --signal-warn: #ffc967;
+  --signal-error: #ff887c;
+  --surface: #cdd8df;
+  --focus: #075fae;
+  --radius-sm: 0.6rem;
+  --radius-md: 1rem;
+  --radius-lg: 1.6rem;
+  --space-1: 0.35rem;
+  --space-2: 0.7rem;
+  --space-3: 1rem;
+  --space-4: 1.5rem;
+  --space-5: 2rem;
+  --touch: 44px;
+  --shadow-raised: -8px -8px 18px var(--light-key), 10px 12px 24px rgba(47, 62, 72, 0.28);
+  --shadow-inset: inset 3px 4px 9px rgba(4, 18, 24, 0.62), inset -2px -3px 6px rgba(166, 232, 228, 0.16);
+  --motion-fast: 140ms;
+  --motion-medium: 260ms;
+}

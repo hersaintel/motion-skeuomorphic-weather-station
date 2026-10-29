@@ -1,10 +1,7 @@
+import { WeatherStation } from '../components/WeatherStation'
+
 function App() {
-  return (
-    <main>
-      <h1>Weatherworks</h1>
-      <section aria-label="Atmospheric instrument console" />
-    </main>
-  )
+  return <WeatherStation />
 }
 
 export default App
