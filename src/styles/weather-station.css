@@ -77,6 +77,18 @@
 .source-lamp--live span { background: var(--signal); }
 .source-lamp--error span { background: var(--signal-error); }
 
+.station-header__tools { display: grid; justify-items: end; gap: .75rem; }
+.location-search { position: relative; z-index: 4; }
+.location-search__trigger { min-height: var(--touch); }
+.location-search__panel { position: absolute; top: calc(100% + .5rem); right: 0; width: min(24rem, calc(100vw - 2rem)); padding: 1rem; border: 2px solid #64737d; border-radius: var(--radius-md); background: linear-gradient(145deg, #e7edf0, #aebbc2); box-shadow: var(--shadow-raised); }
+.location-search__panel label { display: block; margin-bottom: .4rem; font-weight: 850; }
+.location-search__panel input { width: 100%; min-height: 46px; box-sizing: border-box; border: 2px solid #4f626d; border-radius: .55rem; padding: .65rem .75rem; background: #f4f8f9; color: #15242d; font: inherit; box-shadow: inset 2px 2px 4px rgba(20,35,44,.28); }
+.location-search__status { min-height: 1.4em; margin: .55rem 0; font-size: .86rem; }
+.location-search ul { margin: 0; padding: .3rem; list-style: none; border-radius: .55rem; background: #273b46; color: #f3fbff; }
+.location-search li { display: grid; gap: .1rem; padding: .65rem; border-radius: .4rem; cursor: pointer; }
+.location-search li[aria-selected="true"], .location-search li:hover { background: #557586; }
+.location-search li span { font-size: .8rem; opacity: .82; }
+
 .station-status {
   margin: var(--space-3) 0;
   padding: 0.7rem 1rem;
@@ -146,6 +158,15 @@
 .instrument-gauge__needle { stroke: #c74235; stroke-width: 4; stroke-linecap: round; filter: drop-shadow(1px 2px 1px rgba(0,0,0,.35)); }
 .instrument-gauge__hub { fill: #25343d; stroke: #eef5f7; stroke-width: 3; }
 .instrument-gauge__value { display: block; margin-top: -.5rem; font-size: clamp(1rem, 2vw, 1.35rem); font-weight: 900; }
+
+.forecast-tray { margin-top: var(--space-5); padding: var(--space-4); border: 2px solid #687780; border-radius: var(--radius-lg); background: linear-gradient(145deg, #c9d3d8, #8f9da6); box-shadow: var(--shadow-raised); }
+.forecast-tray__header h2 { margin: .15rem 0 1rem; }
+.forecast-days { display: grid; grid-template-columns: repeat(5, minmax(7rem, 1fr)); gap: .7rem; overflow-x: auto; padding: .25rem .15rem .8rem; }
+.forecast-day { position: relative; isolation: isolate; display: grid; place-items: center; gap: .4rem; min-height: 7.5rem; overflow: hidden; }
+.forecast-day > * { position: relative; z-index: 1; }
+.forecast-day > strong { font-size: 1.8rem; }
+.forecast-day__selection { position: absolute; inset: 0; z-index: 0; border: 2px solid #274c5e; border-radius: inherit; background: linear-gradient(145deg, rgba(255,255,255,.7), rgba(103,146,167,.55)); box-shadow: inset 2px 2px 5px rgba(255,255,255,.72); }
+.forecast-detail { display: flex; flex-wrap: wrap; gap: .7rem 1.25rem; align-items: center; min-height: 3rem; margin-top: .7rem; padding: .85rem 1rem; border-radius: .6rem; background: #263a45; color: #f3fbff; box-shadow: inset 2px 3px 7px rgba(0,0,0,.42); }
 
 .reading-grid {
   display: grid;
@@ -224,6 +245,8 @@
 @media (max-width: 560px) {
   .weather-station { width: 100%; min-height: 100svh; margin: 0; padding: max(1rem, env(safe-area-inset-top)) 1rem max(1.2rem, env(safe-area-inset-bottom)); border-radius: 0; }
   .station-header { grid-template-columns: 1fr; }
+  .station-header__tools { justify-items: stretch; }
+  .location-search__panel { left: 0; right: auto; }
   .source-lamp { justify-self: start; }
   .station-layout { grid-template-columns: 1fr; }
   .condition-display__glass { align-items: flex-start; gap: 1rem; }

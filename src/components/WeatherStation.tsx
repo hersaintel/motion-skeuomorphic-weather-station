@@ -2,9 +2,19 @@ import { ConditionDisplay } from './ConditionDisplay'
 import { StationControls } from './StationControls'
 import { useWeatherStation } from '../weather/useWeatherStation'
 import { motion, useReducedMotion } from 'motion/react'
+import { ForecastTray } from './ForecastTray'
+import { LocationSearch } from './LocationSearch'
 
 export function WeatherStation() {
-  const { state, refresh, setUnits, forceFallback } = useWeatherStation()
+  const {
+    state,
+    refresh,
+    setUnits,
+    forceFallback,
+    search,
+    selectLocation,
+    selectDay,
+  } = useWeatherStation()
   const loading = state.loadState === 'loading'
   const reducedMotion = useReducedMotion()
 
@@ -26,9 +36,17 @@ export function WeatherStation() {
               .join(' · ')}
           </p>
         </div>
-        <div className={`source-lamp source-lamp--${state.loadState}`}>
-          <span aria-hidden="true" />
-          {state.snapshot.source === 'live' ? 'Live link' : 'Fallback link'}
+        <div className="station-header__tools">
+          <div className={`source-lamp source-lamp--${state.loadState}`}>
+            <span aria-hidden="true" />
+            {state.snapshot.source === 'live' ? 'Live link' : 'Fallback link'}
+          </div>
+          <LocationSearch
+            results={state.searchResults}
+            searchState={state.searchState}
+            onSearch={search}
+            onSelect={(location) => void selectLocation(location)}
+          />
         </div>
       </header>
 
@@ -57,6 +75,12 @@ export function WeatherStation() {
           </dl>
         </aside>
       </div>
+
+      <ForecastTray
+        days={state.snapshot.daily}
+        selectedDate={state.selectedDay}
+        onSelect={selectDay}
+      />
 
       <StationControls
         units={state.units}
