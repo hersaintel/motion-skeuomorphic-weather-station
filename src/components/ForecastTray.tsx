@@ -1,10 +1,11 @@
 import { AnimatePresence, motion, useReducedMotion } from 'motion/react'
-import { weatherConditionFor } from '../weather/transform'
-import type { DailyForecast } from '../weather/types'
+import { temperatureFor, weatherConditionFor } from '../weather/transform'
+import type { DailyForecast, UnitSystem } from '../weather/types'
 
 interface ForecastTrayProps {
   days: DailyForecast[]
   selectedDate: string
+  units: UnitSystem
   onSelect(date: string): void
 }
 
@@ -13,7 +14,7 @@ const dayLabel = (date: string) =>
     new Date(`${date}T12:00:00Z`),
   )
 
-export function ForecastTray({ days, selectedDate, onSelect }: ForecastTrayProps) {
+export function ForecastTray({ days, selectedDate, units, onSelect }: ForecastTrayProps) {
   const reducedMotion = useReducedMotion()
   const selected = days.find((day) => day.date === selectedDate) ?? days[0]
 
@@ -47,7 +48,10 @@ export function ForecastTray({ days, selectedDate, onSelect }: ForecastTrayProps
               )}
               <span>{dayLabel(day.date)}</span>
               <strong aria-hidden="true">{condition.symbol}</strong>
-              <small>{day.highC}° / {day.lowC}°</small>
+              <small>
+                {temperatureFor(day.highC, units)}°{units === 'metric' ? 'C' : 'F'} /{' '}
+                {temperatureFor(day.lowC, units)}°{units === 'metric' ? 'C' : 'F'}
+              </small>
             </motion.button>
           )
         })}

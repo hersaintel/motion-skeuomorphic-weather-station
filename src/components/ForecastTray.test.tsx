@@ -12,6 +12,7 @@ function Harness() {
       days={FALLBACK_WEATHER.daily}
       selectedDate={selected}
       onSelect={setSelected}
+      units="metric"
     />
   )
 }
@@ -42,5 +43,18 @@ describe('ForecastTray', () => {
 
     expect(thirdDay).toHaveAttribute('aria-pressed', 'true')
     expect(screen.getByText(/Oct 31 forecast/i)).toBeInTheDocument()
+  })
+
+  it('converts forecast temperatures for imperial units', () => {
+    render(
+      <ForecastTray
+        days={FALLBACK_WEATHER.daily}
+        selectedDate={FALLBACK_WEATHER.daily[0].date}
+        onSelect={() => undefined}
+        units="imperial"
+      />,
+    )
+
+    expect(screen.getByRole('button', { name: /Oct 29/i })).toHaveTextContent('76.6°F / 57.7°F')
   })
 })

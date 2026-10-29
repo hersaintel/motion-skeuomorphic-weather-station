@@ -87,7 +87,7 @@ npm run check
 python scripts/build_contact_sheet.py
 ```
 
-`npm run check` runs linting, TypeScript validation, 31 unit/component tests, a production build, and 24 Playwright tests across the named responsive projects, including the three visual-capture cases.
+`npm run check` runs linting, TypeScript validation, 33 unit/component tests, a production build, and 24 Playwright tests across the named responsive projects, including the three visual-capture cases.
 
 ## Project structure
 

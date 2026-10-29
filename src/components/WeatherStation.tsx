@@ -79,6 +79,7 @@ export function WeatherStation() {
       <ForecastTray
         days={state.snapshot.daily}
         selectedDate={state.selectedDay}
+        units={state.units}
         onSelect={selectDay}
       />
 

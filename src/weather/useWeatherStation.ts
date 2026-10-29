@@ -126,7 +126,11 @@ export function useWeatherStation(): WeatherStationController {
 
     const controller = new AbortController()
     searchRequest.current = controller
-    setState((current) => ({ ...current, searchState: 'loading' }))
+    setState((current) => ({
+      ...current,
+      searchResults: [],
+      searchState: 'loading',
+    }))
 
     try {
       const results = await searchLocations(normalizedQuery, controller.signal)

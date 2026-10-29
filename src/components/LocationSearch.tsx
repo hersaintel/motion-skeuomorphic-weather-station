@@ -109,7 +109,7 @@ export function LocationSearch({
               }}
             />
             <p role="status" className="location-search__status">{statusMessage}</p>
-            {query.trim().length >= 3 && results.length > 0 && (
+            {query.trim().length >= 3 && searchState === 'ready' && results.length > 0 && (
               <ul id={listId} role="listbox" aria-label="Location results">
                 {results.map((location, index) => (
                   <li

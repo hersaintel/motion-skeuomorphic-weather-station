@@ -145,6 +145,27 @@ describe('useWeatherStation', () => {
     expect(result.current.state.searchResults).toEqual([])
   })
 
+  it('clears previous search results while a new query is loading', async () => {
+    mockedFetchForecast.mockResolvedValue(liveSnapshot)
+    const nextSearch = deferred<LocationChoice[]>()
+    mockedSearchLocations
+      .mockResolvedValueOnce([FALLBACK_WEATHER.location])
+      .mockReturnValueOnce(nextSearch.promise)
+    const { result } = renderHook(() => useWeatherStation())
+    await waitFor(() => expect(result.current.state.loadState).toBe('live'))
+
+    await act(async () => result.current.search('Nairobi'))
+    expect(result.current.state.searchResults).toHaveLength(1)
+
+    act(() => {
+      void result.current.search('Nakuru')
+    })
+    expect(result.current.state.searchState).toBe('loading')
+    expect(result.current.state.searchResults).toEqual([])
+
+    await act(async () => nextSearch.resolve([]))
+  })
+
   it('updates selected day, unit system, and forced fallback state', async () => {
     mockedFetchForecast.mockResolvedValue(liveSnapshot)
     const { result } = renderHook(() => useWeatherStation())
