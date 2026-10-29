@@ -122,6 +122,31 @@
 .condition-display__glass p { color: #a7d8d0; }
 .condition-display__symbol { font-size: clamp(3.4rem, 8vw, 6rem); filter: drop-shadow(0 3px 5px rgba(0,0,0,.45)); }
 
+.instrument-cluster {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--space-3);
+  margin-top: var(--space-4);
+}
+
+.instrument-gauge {
+  position: relative;
+  min-width: 0;
+  padding: .8rem;
+  text-align: center;
+  border: 2px solid #71808a;
+  border-radius: 50% 50% var(--radius-md) var(--radius-md);
+  background: linear-gradient(145deg, #dae4e9, #8f9da6);
+  box-shadow: inset 2px 2px 3px rgba(255,255,255,.72), 5px 7px 12px rgba(45,58,67,.3);
+}
+
+.instrument-gauge__label { margin: 0; font-size: .74rem; font-weight: 850; letter-spacing: .08em; text-transform: uppercase; }
+.instrument-gauge svg { display: block; width: 100%; max-height: 7rem; }
+.instrument-gauge__scale { fill: none; stroke: #34454f; stroke-width: 9; stroke-linecap: round; }
+.instrument-gauge__needle { stroke: #c74235; stroke-width: 4; stroke-linecap: round; filter: drop-shadow(1px 2px 1px rgba(0,0,0,.35)); }
+.instrument-gauge__hub { fill: #25343d; stroke: #eef5f7; stroke-width: 3; }
+.instrument-gauge__value { display: block; margin-top: -.5rem; font-size: clamp(1rem, 2vw, 1.35rem); font-weight: 900; }
+
 .reading-grid {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -202,6 +227,8 @@
   .source-lamp { justify-self: start; }
   .station-layout { grid-template-columns: 1fr; }
   .condition-display__glass { align-items: flex-start; gap: 1rem; }
+  .instrument-cluster { grid-template-columns: 1fr; }
+  .instrument-gauge { border-radius: var(--radius-md); }
   .reading-grid { grid-template-columns: 1fr 1fr; }
   .station-notes { display: none; }
   .station-controls__actions, .station-controls__actions button { width: 100%; }

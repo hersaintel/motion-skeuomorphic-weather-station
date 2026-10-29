@@ -1,4 +1,5 @@
 import type { UnitSystem } from '../weather/types'
+import { motion } from 'motion/react'
 
 interface StationControlsProps {
   units: UnitSystem
@@ -42,17 +43,25 @@ export function StationControls({
       </fieldset>
 
       <div className="station-controls__actions">
-        <button
+        <motion.button
           type="button"
           aria-label="Refresh weather"
           disabled={loading}
           onClick={onRefresh}
+          whileHover={loading ? undefined : { y: -1 }}
+          whileTap={loading ? undefined : { y: 2, scale: 0.98 }}
         >
           {loading ? 'Refreshing…' : 'Refresh weather'}
-        </button>
-        <button type="button" className="secondary-control" onClick={onFallback}>
+        </motion.button>
+        <motion.button
+          type="button"
+          className="secondary-control"
+          onClick={onFallback}
+          whileHover={{ y: -1 }}
+          whileTap={{ y: 2, scale: 0.98 }}
+        >
           Use demonstration data
-        </button>
+        </motion.button>
       </div>
     </section>
   )

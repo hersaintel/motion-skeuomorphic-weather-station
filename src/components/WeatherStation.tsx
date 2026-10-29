@@ -1,10 +1,12 @@
 import { ConditionDisplay } from './ConditionDisplay'
 import { StationControls } from './StationControls'
 import { useWeatherStation } from '../weather/useWeatherStation'
+import { motion, useReducedMotion } from 'motion/react'
 
 export function WeatherStation() {
   const { state, refresh, setUnits, forceFallback } = useWeatherStation()
   const loading = state.loadState === 'loading'
+  const reducedMotion = useReducedMotion()
 
   return (
     <main
@@ -30,9 +32,15 @@ export function WeatherStation() {
         </div>
       </header>
 
-      <p className={`station-status station-status--${state.loadState}`} role="status">
+      <motion.p
+        className={`station-status station-status--${state.loadState}`}
+        role="status"
+        initial={false}
+        animate={{ opacity: 1, y: 0 }}
+        transition={reducedMotion ? { duration: 0 } : { duration: 0.2 }}
+      >
         {state.message}
-      </p>
+      </motion.p>
 
       <div className="station-layout">
         <ConditionDisplay snapshot={state.snapshot} units={state.units} />
