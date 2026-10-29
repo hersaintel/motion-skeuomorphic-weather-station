@@ -12,6 +12,7 @@ const fileNames: Record<string, string> = {
 }
 
 test('capture deterministic portfolio preview', async ({ page }, testInfo) => {
+  await page.emulateMedia({ reducedMotion: 'reduce' })
   await page.route('**/v1/forecast?**', (route) => route.fulfill({ json: fixture }))
   await page.goto('/')
   await expect(page.getByText('Live link', { exact: true })).toBeVisible()
